@@ -16,7 +16,7 @@ import passportConfig from './app/config/passport';
 import User from './app/models/user';
 
 // set our port
-const port = 9000;
+const port = process.env.PORT || 9000;
 
 // connect to our mongoDB database
 mongoose.connect(process.env.MONGOLAB_URI || db.url);

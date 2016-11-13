@@ -20,6 +20,7 @@
     "serve-favicon": "^2.3.0"
   },
   "scripts": {
+    "postinstall": "webpack",
     "prestart": "webpack",
     "start": "node ./build/server_prod.js",
     "prebuild":"URL=http://cycling-koach.dev.dev4.justcoded.com:9000 webpack",

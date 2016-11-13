@@ -17,8 +17,6 @@ import User from './app/models/user';
 
 // set our port
 
-console.log(process.env);
-
 const port = process.env.PORT || 8080;
 
 // connect to our mongoDB database

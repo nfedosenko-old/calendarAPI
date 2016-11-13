@@ -78,10 +78,11 @@
 
 
 	// set our port
-	var port = 9000;
+
+	var port = (undefined) || 8080;
 
 	// connect to our mongoDB database
-	mongoose.connect(({"URL":undefined}).MONGOLAB_URI || _db2.default.url);
+	mongoose.connect(({"URL":undefined,"PORT":undefined}).MONGOLAB_URI || _db2.default.url);
 
 	mongoose.connection.on('connected', function () {
 	  _user2.default.findOne({ email: 'admin@mail.com' }).exec(function (err, adminUser) {
@@ -166,7 +167,8 @@
 	  value: true
 	});
 	exports.default = {
-	  secret: '1312311415tzfhjslkfjmasfasnlr129470518nfjsalnljka'
+	  secret: '1312311415tzfhjslkfjmasfasnlr129470518nfjsalnljka',
+	  dateFormat: 'DD/MM/YYYY, hh:mm:ss'
 	};
 
 /***/ },
@@ -504,7 +506,7 @@
 	var express = __webpack_require__(10);
 	var passport = __webpack_require__(15);
 
-	var jwt = __webpack_require__(21);
+	var jwt = __webpack_require__(22);
 
 	var router = express.Router();
 
@@ -1088,6 +1090,8 @@
 	    var foundTask = task;
 
 	    foundTask.description = data.description || task.description;
+	    foundTask.date = data.date || task.date;
+
 	    foundTask.save(callback);
 	  });
 	}
@@ -1123,18 +1127,45 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _config = __webpack_require__(2);
+
+	var _config2 = _interopRequireDefault(_config);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var mongoose = __webpack_require__(6);
+	var moment = __webpack_require__(21);
 
 	var taskSchema = mongoose.Schema({
 	  dateStarted: { type: Date, default: new Date() },
 	  userId: mongoose.Schema.Types.ObjectId,
 	  description: String
+	}, {
+	  toObject: {
+	    virtuals: true
+	  },
+	  toJSON: {
+	    virtuals: true
+	  }
+	});
+
+	taskSchema.virtual('date').get(function customDateGet() {
+	  return moment(this.dateStarted).format(_config2.default.dateFormat);
+	}).set(function customDateSet(dateToSet) {
+	  this.set('dateStarted', moment(dateToSet, _config2.default.dateFormat).toDate());
 	});
 
 	exports.default = mongoose.model('Task', taskSchema);
 
 /***/ },
 /* 21 */
+/***/ function(module, exports) {
+
+	module.exports = require("moment");
+
+/***/ },
+/* 22 */
 /***/ function(module, exports) {
 
 	module.exports = require("jsonwebtoken");

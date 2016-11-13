@@ -55,6 +55,8 @@ export function updateTask(req, res) {
     const foundTask = task;
 
     foundTask.description = data.description || task.description;
+    foundTask.date = data.date || task.date;
+
     foundTask.save(callback);
   });
 }

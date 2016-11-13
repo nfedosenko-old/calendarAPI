@@ -1,0 +1,1 @@
+define({  "name": "koach",  "version": "0.0.0",  "description": "",  "sampleUrl": false,  "apidoc": "0.2.0",  "generator": {    "name": "apidoc",    "time": "2016-11-13T13:06:29.265Z",    "url": "http://apidocjs.com",    "version": "0.16.1"  }});

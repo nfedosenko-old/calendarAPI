@@ -1,0 +1,49 @@
+<div class="container">
+    <p class="lead text-center">
+        Koach Users Admin Panel
+    </p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>From facebook</th>
+            <th>Email</th>
+            <th>Image</th>
+            <th>Username</th>
+            <th>Admin</th>
+            <th>Confirmed</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in users">
+            <td>{{user._id}}</td>
+            <td>{{!!user.facebookId}}</td>
+            <td>{{user.email}}</td>
+            <td>
+                <img src="{{user.image}}" ng-if="user.image">
+            </td>
+            <td>
+                <p>{{user.displayName}}</p>
+            </td>
+            <td>
+                {{user.admin}}
+            </td>
+            <td>
+                {{user.confirmed}}
+            </td>
+            <td><span class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="openEditUserModal(user)"></span>
+            </td>
+            <td><span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="deleteUser(user._id)"></span></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-primary btn-large" ng-click="openAddUserModal()">
+        Add new User
+    </button>
+    <button class="btn btn-danger btn-large pull-right" ng-click="logout()">
+        Logout
+    </button>
+</div>

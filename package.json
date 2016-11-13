@@ -18,7 +18,9 @@
     "passport": "~0.1.17",
     "passport-local": "~0.1.6",
     "serve-favicon": "^2.3.0",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "jsonwebtoken": "^7.1.3",
+    "passport-http-bearer": "^1.0.1"
   },
   "scripts": {
     "postinstall": "webpack",
@@ -41,9 +43,6 @@
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
     "gulp-inject": "^4.1.0",
-    "gulp-ng-annotate": "^2.0.0",
-    "jsonwebtoken": "^7.1.3",
-    "nodemailer": "^2.5.0",
-    "passport-http-bearer": "^1.0.1"
+    "gulp-ng-annotate": "^2.0.0"
   }
 }
